@@ -27,13 +27,13 @@ plot_spiral(primes, 30, save_path=image_dir)
 create_animation(primes, angles_range, step_size, save_path=video_dir)
 
 # Analyze patterns
-# angle_points = analyze_turn_angles(primes, angles_range, step_size)
-# patterns = find_repeating_patterns(angle_points, save_path=image_dir)
+angle_points = analyze_turn_angles(primes, angles_range, step_size)
+patterns = find_repeating_patterns(angle_points, save_path=image_dir)
 
 # Plot pattern analysis
-# plot_pattern_analysis(patterns)
+plot_pattern_analysis(patterns)
 
-# # Print angles with repeating patterns
-# for angle, count in patterns.items():
-#     if isinstance(count, int):
-#         print(f"Turn Angle: {angle} degrees has {count} points per curve.")
+# Print angles with repeating patterns
+for angle, count in patterns.items():
+    if isinstance(count, int):
+        print(f"Turn Angle: {angle} degrees has {count} points per curve.")

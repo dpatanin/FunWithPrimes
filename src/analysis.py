@@ -1,9 +1,9 @@
-from typing import Any
+from src.prime_functions import Primes
 import numpy as np
 
 from src.visualizations import draw_spiral_for_angle
 
-def analyze_turn_angles(primes: np.ndarray[Any, np.dtype[np.intp]], angles_range, step_size):
+def analyze_turn_angles(primes: Primes, angles_range: tuple[int, int], step_size: float) -> dict:
     angle_points = {}
     for turn_angle in np.arange(
         angles_range[0], angles_range[1] + step_size, step_size
@@ -18,7 +18,7 @@ def analyze_turn_angles(primes: np.ndarray[Any, np.dtype[np.intp]], angles_range
     return angle_points
 
 
-def find_repeating_patterns(angle_points):
+def find_repeating_patterns(angle_points: dict) -> dict:
     patterns = {}
     for angle, (distances, counts) in angle_points.items():
         repeating_pattern = counts.max() == counts.min()

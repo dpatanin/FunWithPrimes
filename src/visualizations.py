@@ -4,10 +4,11 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
+from src.prime_functions import Primes
 
 
 # Function to draw spiral for a specific angle
-def draw_spiral_for_angle(primes, turn_angle):
+def draw_spiral_for_angle(primes: Primes, turn_angle: float):
     x, y = 0, 0
     coords = [(x, y)]
     step = np.radians(turn_angle)
@@ -25,7 +26,7 @@ def draw_spiral_for_angle(primes, turn_angle):
 
 
 # Function to plot a single frame
-def plot_spiral(primes, turn_angle, save_path):
+def plot_spiral(primes: Primes, turn_angle: float, save_path: str):
     x_coords, y_coords = draw_spiral_for_angle(primes, turn_angle)
 
     fig, ax = plt.subplots(figsize=(10, 10))
@@ -50,7 +51,7 @@ def plot_spiral(primes, turn_angle, save_path):
 
 
 # Function to create an animation
-def create_animation(primes, angles_range, step_size, save_path):
+def create_animation(primes: Primes, angles_range: tuple[int, int], step_size: float, save_path: str):
     fig, ax = plt.subplots(figsize=(10, 10))
 
     (spiral_line,) = ax.plot([], [], "b-")
@@ -92,7 +93,7 @@ def create_animation(primes, angles_range, step_size, save_path):
 
 
 # Function to plot pattern analysis
-def plot_pattern_analysis(patterns, save_path):
+def plot_pattern_analysis(patterns: dict, save_path: str):
     angles = list(patterns.keys())
     counts = [
         (

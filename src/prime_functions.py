@@ -1,7 +1,9 @@
+from typing import Any
 import numpy as np
 
+type Primes = np.ndarray[Any, np.dtype[np.intp]]
 
-def generate_primes(n: int):
+def generate_primes(n: int) -> Primes:
     def sieve(limit):
         is_prime = np.ones(limit + 1, dtype=bool)
         is_prime[:2] = False
