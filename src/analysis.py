@@ -3,7 +3,6 @@ import numpy as np
 
 from src.visualizations import draw_spiral_for_angle
 
-
 def analyze_turn_angles(primes: np.ndarray[Any, np.dtype[np.intp]], angles_range, step_size):
     angle_points = {}
     for turn_angle in np.arange(
