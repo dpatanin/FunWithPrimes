@@ -28,18 +28,19 @@ def draw_spiral_for_angle(primes: Primes, turn_angle: float):
 
 
 # Function to plot a single frame
-def plot_spiral(primes: Primes, turn_angle: float, save_path: str):
+def plot_spiral(primes: Primes, turn_angle: float, save_path: str, plot_red_lines: bool = True):
     x_coords, y_coords = draw_spiral_for_angle(primes, turn_angle)
 
     fig, ax = plt.subplots(figsize=(10, 10))
     ax.plot(x_coords, y_coords, "b-")
 
-    for x, y in tqdm(
-        zip(x_coords[1:], y_coords[1:]),
-        total=len(x_coords) - 1,
-        desc="Plotting red lines",
-    ):
-        ax.plot([0, x], [0, y], "r-")
+    if plot_red_lines:
+        for x, y in tqdm(
+            zip(x_coords[1:], y_coords[1:]),
+            total=len(x_coords) - 1,
+            desc="Plotting red lines",
+        ):
+            ax.plot([0, x], [0, y], "r-")
 
     ax.set_aspect("equal", adjustable="box")
     ax.set_xlim(min(x_coords) - 1, max(x_coords) + 1)
@@ -58,12 +59,13 @@ def plot_spiral(primes: Primes, turn_angle: float, save_path: str):
 
 # Function to create an animation
 def create_animation(
-    primes: Primes, angles_range: tuple[int, int], step_size: float, save_path: str
+    primes: Primes, angles_range: tuple[int, int], step_size: float, save_path: str, plot_red_lines: bool = True
 ):
     fig, ax = plt.subplots(figsize=(10, 10))
 
     (spiral_line,) = ax.plot([], [], "b-")
-    red_lines = [ax.plot([], [], "r-")[0] for _ in range(len(primes))]
+    if plot_red_lines:
+        red_lines = [ax.plot([], [], "r-")[0] for _ in range(len(primes))]
 
     frames = np.arange(angles_range[0], angles_range[1] + step_size, step_size)
 
@@ -73,8 +75,9 @@ def create_animation(
 
         spiral_line.set_data(x_coords, y_coords)
 
-        for line, (x, y) in zip(red_lines, zip(x_coords[1:], y_coords[1:])):
-            line.set_data([0, x], [0, y])
+        if plot_red_lines:
+            for line, (x, y) in zip(red_lines, zip(x_coords[1:], y_coords[1:])):
+                line.set_data([0, x], [0, y])
 
         ax.set_title(f"Turn Angle: {frame} degrees")
         ax.set_xlim(min(x_coords) - 1, max(x_coords) + 1)

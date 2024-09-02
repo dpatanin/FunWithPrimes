@@ -15,3 +15,17 @@ def generate_primes(n: int) -> Primes:
     limit = int(n * np.log(n) * 1.2)
     primes = sieve(limit)
     return primes[:n]
+
+def generate_prime_indices(n: int) -> np.ndarray:
+    primes = generate_primes(n)
+    return primes[primes <= n]
+
+def generate_prime_of_primes(n: int) -> Primes:
+    primes = generate_primes(n)
+    prime_indices = generate_prime_indices(len(primes))
+    return primes[prime_indices - 1]
+
+def subtract_primes_by_index(n: int) -> Primes:
+    primes = generate_primes(n)
+    indices = np.arange(1, n + 1)  # Generate indices starting from 1 to n
+    return primes - indices
