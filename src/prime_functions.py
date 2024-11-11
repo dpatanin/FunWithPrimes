@@ -29,3 +29,10 @@ def subtract_primes_by_index(n: int) -> Primes:
     primes = generate_primes(n)
     indices = np.arange(1, n + 1)  # Generate indices starting from 1 to n
     return primes - indices
+
+def generate_prime_fractions(n: int) -> np.ndarray:
+    primes = generate_primes(n)
+
+    numerators = np.arange(1, n + 1)
+
+    return numerators / primes

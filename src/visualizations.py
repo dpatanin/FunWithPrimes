@@ -133,3 +133,21 @@ def plot_red_line_angles_distribution(
     filepath = os.path.join(save_path, filename)
     plt.savefig(filepath)
     plt.close()
+
+
+def plot_fractions(fractions: np.ndarray):
+    # Plot the fractions
+    plt.figure(figsize=(10, 6))
+    plt.plot(fractions, marker="o", linestyle="-", color="b", label="x / prime(x)")
+    
+    # Adding titles and labels
+    plt.title("Fractions x / Prime(x)")
+    plt.xlabel("x (Index)")
+    plt.ylabel("x / Prime(x)")
+    
+    # Adding grid and legend
+    plt.grid(True)
+    plt.legend()
+    
+    # Show the plot
+    plt.show()
